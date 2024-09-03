@@ -786,7 +786,7 @@ body, html {
     margin: 30px 0;
     padding: 7px 30px;
     color: #353535;
-    background: #BC9B5D;
+    background:rgba(207, 200, 184);
     border-radius: 30px;
 }
 
@@ -865,12 +865,40 @@ body, html {
     margin-top: 15px;
 }
 
-.buttons .btn {
-    margin-right: 10px;
-    display: inline-block;
-    text-align: center;
-    width: 100%;
+/* Style for the icon buttons */
+.buttons .btn-icon {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px; /* Adjust padding for a clean look */
+    font-size: 14px; /* Font size for text */
+    color: rgba(207, 200, 184); /* Initial color - visible without hover */
+    text-decoration: none; /* Remove underline */
+    border: 1px solid rgba(207, 200, 184); /* Add a border to make it more visible */
+    border-radius: 5px; /* Rounded corners for buttons */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Smooth transition */
 }
+
+/* Icon style */
+.buttons .btn-icon span {
+    margin-right: 8px; /* Space between icon and text */
+    font-size: 20px; /* Adjust icon size */
+    color: #007bff; /* Icon color */
+}
+
+/* Hover effect for buttons */
+.buttons .btn-icon:hover {
+    background-color:rgba(207, 200, 184); /* Background color on hover */
+    color: #000080; /* Text and icon color on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Change icon color on hover */
+.buttons .btn-icon:hover span.fa {
+    color: #000080; /* Icon color on hover */
+}
+
+
+
 
 
 
