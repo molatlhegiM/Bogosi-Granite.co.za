@@ -595,10 +595,10 @@ body, html {
 }
 
 @keyframes slide {
-    0% { background-image: url('img/main1.jpg'); }
-    33% { background-image: url('img/main2.jpg'); }
-    66% { background-image: url('img/main3.jpg'); }
-    100% { background-image: url('img/main4.jpg'); }
+    0% { background-image: url('https://molatlhegim.github.io/Bogosi-Granite.co.za/img/main1.jpg'); }
+    33% { background-image: url('https://molatlhegim.github.io/Bogosi-Granite.co.za/img/main2.jpg'); }
+    66% { background-image: url('https://molatlhegim.github.io/Bogosi-Granite.co.za/img/main3.jpg'); }
+    100% { background-image: url('https://molatlhegim.github.io/Bogosi-Granite.co.za/img/main4.jpg'); }
 }
 
 
