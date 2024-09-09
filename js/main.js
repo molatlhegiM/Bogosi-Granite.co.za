@@ -107,3 +107,30 @@
     
 })(jQuery);
 
+let slideIndex = 0;
+let slides = document.getElementsByClassName("mySlides");
+
+shuffleSlides();  // Shuffle slides before showing
+showSlides();
+
+function showSlides() {
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {
+        slideIndex = 1;
+    }
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(showSlides, 4000); // Change image every 4 seconds
+}
+
+// Function to shuffle the slides randomly
+function shuffleSlides() {
+    for (let i = slides.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        slides[i].parentNode.insertBefore(slides[j], slides[i].nextSibling);
+    }
+}
+
+
