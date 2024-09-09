@@ -561,7 +561,7 @@ body, html {
 /* Fading animation */
 .fade {
     animation-name: fade;
-    animation-duration: 2s;
+    animation-duration: 5s;
 }
 
 @keyframes fade {
@@ -586,14 +586,19 @@ body, html {
 }
 
 .overlay h3 {
-    font-size: 3rem;
+    font-size: 10rem;
     margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Text shadow to enhance visibility */
 }
 
+
 .overlay p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+    font-size: 10rem;
+    margin-bottom: 35px;
+    font-weight: bold; /* Add this line to make the text bolder */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Keep the shadow for better contrast */
 }
+
 
 .overlay a {
     color: #fff;
