@@ -511,7 +511,7 @@ video {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: rgba(0, 0, 0, 0.5); /* Add a dark overlay to enhance text visibility */
+    background: rgba(0, 0, 0, 0.23); /* Add a dark overlay to enhance text visibility */
     color: white;
     padding: 20px;
     font-family: 'Open Sans', sans-serif; /* Base font for overlay text */
