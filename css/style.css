@@ -831,11 +831,16 @@ video {
     align-items: center;
     padding: 8px 12px; /* Adjust padding for a clean look */
     font-size: 14px; /* Font size for text */
-    color: rgba(207, 200, 184); /* Initial color - visible without hover */
+    color: rgba(207, 200, 184); /* Initial color */
     text-decoration: none; /* Remove underline */
-    border: 1px solid rgba(207, 200, 184); /* Add a border to make it more visible */
-    border-radius: 5px; /* Rounded corners for buttons */
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    border: 1px solid rgba(207, 200, 184); /* Add border */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    margin-bottom: 10px; /* Add vertical space between buttons */
+}
+
+.buttons .btn-icon:last-child {
+    margin-bottom: 0; /* Remove bottom margin for the last button */
 }
 
 /* Icon style */
@@ -847,7 +852,7 @@ video {
 
 /* Hover effect for buttons */
 .buttons .btn-icon:hover {
-    background-color:rgba(207, 200, 184); /* Background color on hover */
+    background-color: rgba(207, 200, 184); /* Background color on hover */
     color: #000080; /* Text and icon color on hover */
     transform: scale(1.05); /* Slightly enlarge on hover */
 }
