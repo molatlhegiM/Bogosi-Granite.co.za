@@ -582,7 +582,7 @@ video {
 /* About Section */
 #about {
     padding: 60px 0;
-    background: url('../img/aboutus.jpg') no-repeat center center/cover;
+    background: url('../img/bg2.jpg') no-repeat center center/cover;
     color: #2c2020;
 }
 
@@ -595,7 +595,7 @@ video {
 
 #about .about-col-left {
     flex: 1;
-    background: url('../img/bg2.jpg') no-repeat center center/cover; /* Add a supporting image */
+    background: url('../img/aboutus.jpg') no-repeat center center/cover; /* Add a supporting image */
     height: 400px;
     border-radius: 10px;
 }
