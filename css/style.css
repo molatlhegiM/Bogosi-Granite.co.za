@@ -465,144 +465,152 @@ body.mobile-nav-active #mobile-nav-toggle {
 /* ================================================= */
 
 
-
-/* Remove the Swiper styles */
-
-body, html {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-
-/* Welcome Section Styling */
+/* Welcome Section */
 #welcome {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: auto;
     overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 /* Video Container */
 .video-container {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative; 
     width: 100%;
-    height: 100%;
+    height: auto; /* Full height of the viewport */
     overflow: hidden;
-    z-index: -1; /* Ensures the video stays behind the text */
+    z-index: -1; 
+    margin-bottom: 0; /* Ensures no gap below the video */
 }
 
+/* Video Styling */
 video {
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures the video covers the entire area without distortion */
+    height: auto; /* Ensures the height auto-adjusts */
+    object-fit: cover; /* Fills the container while maintaining aspect ratio */
+    display: block; /* Avoids any inline element gaps */
 }
 
-/* Text Overlay Styling */
-/* Text Overlay Styling */
+/* Overlay Styling */
 .overlay {
     position: absolute;
     top: 0;
     left: 0;
+    bottom: 0;
     width: 100%;
-    height: 100%;
+    height: inherit;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: rgba(0, 0, 0, 0.23); /* Add a dark overlay to enhance text visibility */
+    background: rgba(0, 0, 0, 0.23); 
     color: white;
+    padding: 0; /* Removed padding to avoid extra space */
+    box-sizing: border-box; /* Ensure padding doesn't affect dimensions */
+}
+
+
+/* Body and HTML tweaks */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    scroll-behavior: smooth; /* Enables smooth scrolling */
+}
+
+/* Make sure the page is scrollable */
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure content after the video is reachable */
+main {
+    flex-grow: 1;
+}
+.info-box {
+    background: #cfc8b8; /* Royal beige */
+    color: #001f3f; /* Dark navy blue */
     padding: 20px;
-    font-family: 'Open Sans', sans-serif; /* Base font for overlay text */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    margin-bottom: 20px; /* Space between boxes */
+    height: 100%; /* Ensures uniform height */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
 }
 
-.overlay h3 {
-    font-size: 4rem; /* Adjusted font size for better readability */
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Text shadow to enhance visibility */
-    font-family: 'Roboto', sans-serif; /* Font for h3 heading */
+.info-box:hover {
+    transform: translateY(-5px); /* Move up on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
 }
 
-.overlay p {
-    font-size: 1.5rem;
-    margin-bottom: 35px;
-    font-weight: bold;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-    font-family: 'Merriweather', serif; /* Font for paragraph text */
+.info-box h4 {
+    margin-bottom: 10px; /* Space between heading and paragraph */
+    color: #001f3f; /* Dark navy blue text for the heading */
 }
 
-.overlay a {
-    color: #fff;
-    background-color: #000435; /* Your brand's orange color */
-    padding: 10px 20px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    font-family: 'Arial', sans-serif; /* Font for link text */
+.info-box p {
+    color: #666; /* Gray text for the paragraph */
+}
+
+/* Read More Button Styling */
+.read-more {
     display: inline-block;
-    transition: all 0.3s ease; /* Smooth transition effect */
-    position: relative;
-    overflow: hidden;
+    margin-top: 10px; /* Space above the button */
+    padding: 10px 15px; /* Button padding */
+    background: #001f3f; /* Dark navy blue background for the button */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners for the button */
+    text-decoration: none; /* Remove underline from link */
+    transition: background 0.3s; /* Smooth transition for hover */
 }
 
-.overlay a::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background: rgba(255, 255, 255, 0.2); /* Light highlight effect */
-    transition: all 0.4s ease;
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
+.read-more:hover {
+    background: #000c1f; /* Darker navy on hover */
 }
 
-.overlay a:hover::before {
-    transform: translate(-50%, -50%) scale(1);
-}
 
-.overlay a:hover {
-    background-color: #ac976c; /* Darker shade for hover effect */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow effect for hover */
-    color: #fff;
-}
 
-/* Responsive */
-@media (max-width: 768px) {
-    .overlay h3 {
-        font-size: 2rem;
-    }
-    .overlay p {
-        font-size: 1rem;
-    }
-}
 
 /* About Section */
 #about {
     padding: 60px 0;
-    background: url('../img/bg2.jpg') no-repeat center center/cover;
+    background: url('../img/bg2.jpg') no-repeat center center/cover; 
     color: #2c2020;
+    min-height: 100vh;
+    margin-top: 0; /* Ensures it's directly under the video */
 }
 
+/* Flex container for About content */
 #about .container {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Change this to flex-start to align items at the start */
     justify-content: space-between;
-    flex-direction: row; /* Make the layout horizontal */
+    flex-direction: row;
 }
 
+/* About section elements */
 #about .about-col-left {
     flex: 1;
-    background: url('../img/aboutus.jpg') no-repeat center center/cover; /* Add a supporting image */
+    background: url('../img/aboutus.jpg') no-repeat center center/cover;
     height: 400px;
     border-radius: 10px;
+    margin-top: 40px; /* Add margin to bring it down */
 }
 
 #about .about-col-right {
     flex: 1;
     padding-left: 40px;
+    margin-top: 40px; /* Add margin to bring it down */
 }
 
 #about .section-header h3 {
@@ -618,10 +626,11 @@ video {
     color: #1f1f1c;
 }
 
+/* Button inside the about section */
 #about .button-wrapper {
     display: flex;
-    justify-content: center; /* Center the button horizontally */
-    margin-top: 20px; /* Space above the button */
+    justify-content: center;
+    margin-top: 20px;
 }
 
 #about a.btn {
@@ -633,48 +642,31 @@ video {
     font-weight: bold;
     border-radius: 5px;
     text-decoration: none;
-    transition: all 0.3s ease; /* Smooth transition for hover effects */
-    position: relative;
-    overflow: hidden;
-}
-
-#about a.btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background: rgba(255, 255, 255, 0.2); /* Light highlight effect */
-    transition: all 0.4s ease;
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-}
-
-#about a.btn:hover::before {
-    transform: translate(-50%, -50%) scale(1);
+    transition: all 0.3s ease;
 }
 
 #about a.btn:hover {
-    background-color: #ac976c; /* Darker shade for hover effect */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow effect for hover */
-    color: #fff;
+    background-color: #cfc8b8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-
+/* Responsive adjustments */
 @media (max-width: 768px) {
     #about .container {
-        flex-direction: column; /* Stack the columns vertically on smaller screens */
+        flex-direction: column;
     }
     
+    #about .about-col-left {
+        height: 300px;
+        margin-top: 20px; /* Adjust margin for smaller screens */
+    }
+
     #about .about-col-right {
         padding-left: 0;
         padding-top: 20px;
+        margin-top: 20px; /* Adjust margin for smaller screens */
     }
 }
-
-
-
 
 /* ================================================= */
 /* -------------- Food Menu Section ---------------- */
@@ -754,6 +746,61 @@ video {
     color: #BC9B5D;
     background: #ffffff;
 }
+
+
+/* ------------------ memorial Section start ----------------- */
+#memorial .single-menu {
+    display: flex;              /* Flexbox for horizontal layout */
+    align-items: center;        /* Vertically align the items */
+    border: 1px solid #ddd;     /* Light border around the blocks */
+    padding: 10px;              /* Adjusted padding for smaller blocks */
+    margin-bottom: 20px;        /* Space between blocks */
+    background-color: #f9f4ec;  /* Beige background color for the entire block */
+}
+
+#memorial .photo-group {
+    flex: 0 0 35%;              /* Set image carousel width */
+    text-align: left;
+}
+
+#memorial .photo-group .carousel-inner {
+    width: 100%;                /* Full width of carousel */
+}
+
+#memorial .photo-group img {
+    width: 100%;                /* Ensure images take up the full width */
+    height: auto;               /* Maintain image aspect ratio */
+}
+
+#memorial .menu-text {
+    flex: 0 0 65%;              /* Text area takes 65% of the width */
+    padding: 15px;              /* Add space between text and image */
+    background-color: #f9f4ec;  /* Beige background color for text */
+    border-radius: 8px;         /* Rounded corners for the text box */
+}
+
+#memorial .menu-text h4 {
+    margin-bottom: 10px;        /* Space between title and description */
+    font-size: 34px;            /* Font size for title */
+}
+
+#memorial .menu-text p {
+    font-size: 18px;            /* Font size for description */
+    line-height: 1.5;           /* Line spacing for readability */
+}
+
+@media (max-width: 768px) {
+    #memorial .single-menu {
+        flex-direction: column; /* Stack image and text vertically on smaller screens */
+    }
+
+    #memorial .menu-text {
+        padding-left: 0;        /* Remove left padding on smaller screens */
+        text-align: center;     /* Center text on smaller screens */
+    }
+}
+/* ------------------ memorial Section end----------------- */
+
 
 /* ================================================= */
 /* ------------------ Team Section ----------------- */
@@ -861,6 +908,20 @@ video {
 .buttons .btn-icon:hover span.fa {
     color: #000080; /* Icon color on hover */
 }
+
+
+/* Customize the Lightbox Description */
+.lightbox .lb-data .lb-caption {
+    font-size: 16px; /* Set the font size for paragraph */
+    font-family: Arial, sans-serif; /* Font family for a clean look */
+    line-height: 1.6; /* Line height for better readability */
+    padding: 15px; /* Padding to create space around text */
+    text-align: left; /* Align text to the left */
+    color: #333; /* Darker text for readability */
+}
+
+
+
 
 
 
