@@ -234,24 +234,22 @@
         
         <!-- Team Section End -->
 
-       <!-- Testimonials Section Start -->
-<section id="testimonials" class="section-bg">
-    <div class="container">
-        <div class="section-header">
-            <h3>Google Reviews</h3>
-            <button onclick="openGoogleReview()">Write a Review</button>
-        </div>
-
-        <div id="google-reviews" class="owl-carousel testimonials-carousel">
-            <!-- Reviews will be dynamically loaded here -->
-        </div>
-    </div>
-</section>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
-<script src="script.js"></script>
-
-
+        <section id="testimonials" class="section-bg">
+            <div class="container">
+                <div class="section-header">
+                    <h3>Google Reviews</h3>
+                    <button onclick="openGoogleReview()" style="background-color: #000080; color: rgb(230, 209, 166);">Write a Review</button>
+                </div>
+                <div id="google-reviews">
+                    <!-- Reviews will load here -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Include Google Maps JavaScript API -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMs-DsB6pg3VEwNZsNmNwgj2EmbnjNwCQ&libraries=places"></script>
+        <script src="script.js"></script>
+        
 <!-- Testimonials Section End -->
 
         <!-- Contact Section Start -->

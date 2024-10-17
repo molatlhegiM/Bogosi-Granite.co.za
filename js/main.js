@@ -133,11 +133,12 @@ function shuffleSlides() {
     }
 }
 
-const API_KEY = 'AIzaSyBMs-DsB6pg3VEwNZsNmNwgj2EmbnjNwCQ'; 
-const PLACE_ID = 'ChIJtZeocVenlR4Rk4syssqqFkY'; 
+const API_KEY = 'AIzaSyBMs-DsB6pg3VEwNZsNmNwgj2EmbnjNwCQ';
+const PLACE_ID = 'ChIJtZeocVenlR4Rk4syssqqFkY';
 
 function fetchGoogleReviews() {
     const service = new google.maps.places.PlacesService(document.createElement('div'));
+    
     service.getDetails({ placeId: PLACE_ID }, (place, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             const reviewsContainer = document.getElementById('google-reviews');
@@ -148,9 +149,6 @@ function fetchGoogleReviews() {
                 reviewElement.classList.add('testimonial-item');
                 reviewElement.innerHTML = `
                     <div class="testimonial-content">
-                        <div class="img">
-                            <img src="${review.profile_photo_url}" alt="${review.author_name}">
-                        </div>
                         <h4>${review.author_name}</h4>
                         <div class="rating">${'⭐'.repeat(review.rating)}</div>
                         <p>${review.text}</p>
@@ -159,7 +157,8 @@ function fetchGoogleReviews() {
                 reviewsContainer.appendChild(reviewElement);
             });
         } else {
-            console.error('Failed to fetch reviews:', status);
+            console.error('Error fetching reviews:', status);
+            alert('Failed to load reviews. Please check the console for details.');
         }
     });
 }
