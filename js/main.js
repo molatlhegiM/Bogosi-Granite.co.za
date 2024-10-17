@@ -134,58 +134,38 @@ function shuffleSlides() {
 }
 
 const API_KEY = 'AIzaSyBMs-DsB6pg3VEwNZsNmNwgj2EmbnjNwCQ'; 
-const PLACE_ID = 'ChIJtZeocVenlR4Rk4syssqqFkY';
+const PLACE_ID = 'ChIJtZeocVenlR4Rk4syssqqFkY'; 
 
-// Function to open Google Review Page
-function openGoogleReview() {
-    // This opens the Google review page in a new tab
-    window.open(`https://search.google.com/local/writereview?placeid=${PLACE_ID}`, '_blank');
-}
-
-function loadGoogleReviews() {
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`;
-    script.onload = initMap;
-    document.head.appendChild(script);
-}
-
-function initMap() {
+function fetchGoogleReviews() {
     const service = new google.maps.places.PlacesService(document.createElement('div'));
-    const request = {
-        placeId: PLACE_ID,
-        fields: ['reviews', 'rating', 'user_ratings_total']
-    };
-
-    service.getDetails(request, (place, status) => {
+    service.getDetails({ placeId: PLACE_ID }, (place, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-            displayReviews(place.reviews);
+            const reviewsContainer = document.getElementById('google-reviews');
+            reviewsContainer.innerHTML = '';
+
+            place.reviews.forEach(review => {
+                const reviewElement = document.createElement('div');
+                reviewElement.classList.add('testimonial-item');
+                reviewElement.innerHTML = `
+                    <div class="testimonial-content">
+                        <div class="img">
+                            <img src="${review.profile_photo_url}" alt="${review.author_name}">
+                        </div>
+                        <h4>${review.author_name}</h4>
+                        <div class="rating">${'⭐'.repeat(review.rating)}</div>
+                        <p>${review.text}</p>
+                    </div>
+                `;
+                reviewsContainer.appendChild(reviewElement);
+            });
         } else {
-            console.error('Failed to load reviews:', status);
+            console.error('Failed to fetch reviews:', status);
         }
     });
 }
 
-function displayReviews(reviews) {
-    const reviewsContainer = document.getElementById('google-reviews');
-    reviewsContainer.innerHTML = ''; // Clear any existing reviews
-
-    reviews.forEach(review => {
-        const reviewItem = document.createElement('div');
-        reviewItem.className = 'testimonial-item';
-        reviewItem.innerHTML = `
-            <div class="content">
-                <h4>${review.author_name}</h4>
-                <p>${review.text}</p>
-                <div class="rating">Rating: ${review.rating} stars</div>
-            </div>
-        `;
-        reviewsContainer.appendChild(reviewItem);
-    });
-}
-
 function openGoogleReview() {
     window.open(`https://search.google.com/local/writereview?placeid=${PLACE_ID}`, '_blank');
 }
 
-// Load the Google reviews when the page is loaded
-window.onload = loadGoogleReviews;
+document.addEventListener('DOMContentLoaded', fetchGoogleReviews);
