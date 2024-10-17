@@ -133,38 +133,49 @@ function shuffleSlides() {
     }
 }
 
-const API_KEY = 'AIzaSyBMs-DsB6pg3VEwNZsNmNwgj2EmbnjNwCQ';
-const PLACE_ID = 'ChIJtZeocVenlR4Rk4syssqqFkY';
-
 function fetchGoogleReviews() {
-    const service = new google.maps.places.PlacesService(document.createElement('div'));
-    
-    service.getDetails({ placeId: PLACE_ID }, (place, status) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-            const reviewsContainer = document.getElementById('google-reviews');
-            reviewsContainer.innerHTML = '';
-
-            place.reviews.forEach(review => {
-                const reviewElement = document.createElement('div');
-                reviewElement.classList.add('testimonial-item');
-                reviewElement.innerHTML = `
-                    <div class="testimonial-content">
-                        <h4>${review.author_name}</h4>
-                        <div class="rating">${'⭐'.repeat(review.rating)}</div>
-                        <p>${review.text}</p>
-                    </div>
-                `;
-                reviewsContainer.appendChild(reviewElement);
-            });
-        } else {
-            console.error('Error fetching reviews:', status);
-            alert('Failed to load reviews. Please check the console for details.');
+    // Mock data simulating API response
+    const mockReviews = [
+        {
+            author_name: "John Doe",
+            rating: 5,
+            text: "Great service and high-quality products. Highly recommend!",
+        },
+        {
+            author_name: "Jane Smith",
+            rating: 4,
+            text: "Good experience overall. The team was professional and the results were fantastic.",
+        },
+        {
+            author_name: "Michael Brown",
+            rating: 3,
+            text: "Service was decent, but there were some delays in delivery.",
         }
+    ];
+
+    // Display mock reviews
+    const reviewsContainer = document.getElementById('google-reviews');
+    reviewsContainer.innerHTML = '';
+
+    mockReviews.forEach(review => {
+        const reviewElement = document.createElement('div');
+        reviewElement.classList.add('testimonial-item');
+        reviewElement.innerHTML = `
+            <div class="testimonial-content">
+                <h4>${review.author_name}</h4>
+                <div class="rating">${'⭐'.repeat(review.rating)}</div>
+                <p>${review.text}</p>
+            </div>
+        `;
+        reviewsContainer.appendChild(reviewElement);
     });
 }
 
 function openGoogleReview() {
+    // Replace with your place ID
+    const PLACE_ID = 'ChIJtZeocVenlR4Rk4syssqqFkY';
     window.open(`https://search.google.com/local/writereview?placeid=${PLACE_ID}`, '_blank');
 }
 
+// Simulate API call when the page loads
 document.addEventListener('DOMContentLoaded', fetchGoogleReviews);
