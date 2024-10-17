@@ -122,7 +122,7 @@ function showSlides() {
         slideIndex = 1;
     }
     slides[slideIndex - 1].style.display = "block";
-    setTimeout(showSlides, 4000); // Change image every 4 seconds
+    setTimeout(showSlides, 5000); // Change image every 5 seconds
 }
 
 // Function to shuffle the slides randomly
@@ -133,4 +133,59 @@ function shuffleSlides() {
     }
 }
 
+const API_KEY = 'AIzaSyBMs-DsB6pg3VEwNZsNmNwgj2EmbnjNwCQ'; 
+const PLACE_ID = 'ChIJtZeocVenlR4Rk4syssqqFkY';
 
+// Function to open Google Review Page
+function openGoogleReview() {
+    // This opens the Google review page in a new tab
+    window.open(`https://search.google.com/local/writereview?placeid=${PLACE_ID}`, '_blank');
+}
+
+function loadGoogleReviews() {
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`;
+    script.onload = initMap;
+    document.head.appendChild(script);
+}
+
+function initMap() {
+    const service = new google.maps.places.PlacesService(document.createElement('div'));
+    const request = {
+        placeId: PLACE_ID,
+        fields: ['reviews', 'rating', 'user_ratings_total']
+    };
+
+    service.getDetails(request, (place, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            displayReviews(place.reviews);
+        } else {
+            console.error('Failed to load reviews:', status);
+        }
+    });
+}
+
+function displayReviews(reviews) {
+    const reviewsContainer = document.getElementById('google-reviews');
+    reviewsContainer.innerHTML = ''; // Clear any existing reviews
+
+    reviews.forEach(review => {
+        const reviewItem = document.createElement('div');
+        reviewItem.className = 'testimonial-item';
+        reviewItem.innerHTML = `
+            <div class="content">
+                <h4>${review.author_name}</h4>
+                <p>${review.text}</p>
+                <div class="rating">Rating: ${review.rating} stars</div>
+            </div>
+        `;
+        reviewsContainer.appendChild(reviewItem);
+    });
+}
+
+function openGoogleReview() {
+    window.open(`https://search.google.com/local/writereview?placeid=${PLACE_ID}`, '_blank');
+}
+
+// Load the Google reviews when the page is loaded
+window.onload = loadGoogleReviews;

@@ -37,6 +37,25 @@
 <!-- Slick JS -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
+<style>
+    #testimonials .section-header button {
+        background-color: #000435; /* Dark navy */
+        color: #ffffff; /* White text */
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+    
+    #testimonials .section-header button:hover {
+        background-color: #f5f5dc; /* Royal beige */
+        color: #000000; /* Black text for better contrast */
+    }
+    </style>
+    
+
 
     </head>
 
@@ -215,80 +234,25 @@
         
         <!-- Team Section End -->
 
-        <!-- Testimonials Section Start -->
-        <section id="testimonials" class="section-bg wow fadeInUp">
-            <div class="container">
-                <div class="section-header">
-                    <h3>Our Clients</h3>
-                </div>
+       <!-- Testimonials Section Start -->
+<section id="testimonials" class="section-bg">
+    <div class="container">
+        <div class="section-header">
+            <h3>Google Reviews</h3>
+            <button onclick="openGoogleReview()">Write a Review</button>
+        </div>
 
-                <div class="owl-carousel testimonials-carousel">
-                    <div class="row testimonial-item">
-                        <div class="col-sm-4">
-                            <div class="img">
-                                <img src="img/testimonial-1.jpg" class="testimonial-img" alt="">
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="testimonial-content">
-                                <div class="content">
-                                    <h4>Name of a Client</h4>
-                                    <h5>Years Together</h5>
-                                    <p>
-                                        <i class="fa fa-quote-left"></i>
-                                        Commodo sed hendrerit id, posuere tempus odio. Phasellus vel leo aliquam, interdum massa quis, aliquam sapien. Aliquam erat volutpat. Etiam nec feugiat libero. Phasellus in ipsum nunc.
-                                        <i class="fa fa-quote-right"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div id="google-reviews" class="owl-carousel testimonials-carousel">
+            <!-- Reviews will be dynamically loaded here -->
+        </div>
+    </div>
+</section>
 
-                    <div class="row testimonial-item">
-                        <div class="col-sm-4">
-                            <div class="img">
-                                <img src="img/testimonial-2.jpg" class="testimonial-img" alt="">
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="testimonial-content">
-                                <div class="content">
-                                    <h4>Name of a Client</h4>
-                                    <h5>Years Together</h5>
-                                    <p>
-                                        <i class="fa fa-quote-left"></i>
-                                        Proin ut dui dictum ligula condimentum cursus. Ut orci arcu, commodo sed hendrerit id, posuere tempus odio. Phasellus vel leo aliquam, interdum massa quis, aliquam sapien. Aliquam erat volutpat
-                                        <i class="fa fa-quote-right"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+<script src="script.js"></script>
 
-                    <div class="row testimonial-item">
-                        <div class="col-sm-4">
-                            <div class="img">
-                                <img src="img/testimonial-3.jpg" class="testimonial-img" alt="">
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="testimonial-content">
-                                <div class="content">
-                                    <h4>Name of a Client</h4>
-                                    <h5>Years Together</h5>
-                                    <p>
-                                        <i class="fa fa-quote-left"></i>
-                                        Dictum ligula condimentum cursus commodo sed hendrerit id, posuere tempus odio. Phasellus vel leo aliquam, interdum massa quis, aliquam sapien. Aliquam erat volutpat. Etiam nec ultricies semper risus.
-                                        <i class="fa fa-quote-right"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Testimonials Section End -->
+
+<!-- Testimonials Section End -->
 
         <!-- Contact Section Start -->
         <section id="contact">
@@ -302,9 +266,9 @@
                         <div class="contact-col-1">
                             <div class="contact-hours">
                                 <h4>Opening Hours</h4>
-                                <p>Monday-Friday: 7:00am to 17:00pm</p>
-                                <p>Saturday: 5:00pm to 14:00pm</p>
-                                <p>Sunday: 9:00am to 12pm</p>
+                                <p>Monday-Friday: 08:00am - 16:30pm</p>
+                                <p>Saturday: Appointment Only</p>
+                                <p>Sunday: Appointment Only</p>
                             </div>
                         </div>
                     </div>
@@ -312,9 +276,9 @@
                         <div class="contact-col-2">
                             <div class="contact-info">
                                 <h4>Contact Info</h4>
-                                <p>Shop 1, Blackchain Centre, Cnr Patrick & Chris Hani Rd, Diepkloof Zone 6, Johannesburg, South Africa</p>
+                                <p>4A Millward Rd, Maraisburg, Roodepoort, 1709, South Africa</p>
                                 <p><a href="tel:+27 61 841 7886">061 841 7886</a></p>
-                                <p><a href="mailto:sales@bogosigranite.co.za">sales@bogosigranite.co.za</a></p>
+                                <p><a href="mailto:sales@bogosigranite.co.za">sales@bgtgranite.co.za</a></p>
                             </div>
                         </div>
                     </div>
@@ -323,9 +287,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="contact-map">
-                            <iframe 
-			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.0218108562337!2d27.961013474959975!3d-26.247472083365173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950b90f1d780e3%3A0x2dbd9396e34bdbdb!2sBlackchain%20Centre!5e0!3m2!1sen!2sza!4v1693490400506!5m2!1sen!2sza">
-		</iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.4836390409982!2d27.943570899999997!3d-26.18094109999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950a614685156b%3A0xfa17f7590b5b595d!2s4%20Millward%20Rd%2C%20Maraisburg%2C%20Randburg%2C%201700!5e0!3m2!1sen!2sza!4v1729004778810!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
 
@@ -385,15 +347,13 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="copyright">
-							<p>&copy; Copyright <a href="">Bogosi Granite</a>. All Rights Reserved</p>
+							<p>&copy; Copyright <a href="">BGT Granite & Tombstones</a>. All Rights Reserved</p>
 						</div>
                     </div>
                     <div class="col-sm-6">
                         <ul class="icon">
                             <li><a href="https://web.facebook.com/BGTgranite?__cft__[0]=AZWMzUw45OlN2dNqszjWwuY5gahCNFBmQJF1wYELf6imyclimplqaRZcKapgE5jh-jR9zR_MF4VToRTzRh-zs3fjVovmkCZvpTpJLpepXCup0Rp2QXXUblPnsozJ5x5wTX-jIY-1nO1BA6NKRQvrM1I08l-WNpNYysecG1b3R4CL5p3Jrph5ugYhxlTpW3IyspW84Sa_kWkLfsot9y1hKiVQ&__tn__=-UC%2CP-R" target="_blank" class="fa fa-facebook"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
                             <li><a href="https://www.instagram.com/bgt_granite/#" target="_blank" class="fa fa-instagram"></a></li>
-                            <li><a href="#" class="fa fa-linkedin"></a></li>
                         </ul>
                     </div>
                     
