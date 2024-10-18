@@ -133,49 +133,95 @@ function shuffleSlides() {
     }
 }
 
-function fetchGoogleReviews() {
-    // Mock data simulating API response
-    const mockReviews = [
-        {
-            author_name: "John Doe",
-            rating: 5,
-            text: "Great service and high-quality products. Highly recommend!",
-        },
-        {
-            author_name: "Jane Smith",
-            rating: 4,
-            text: "Good experience overall. The team was professional and the results were fantastic.",
-        },
-        {
-            author_name: "Michael Brown",
-            rating: 3,
-            text: "Service was decent, but there were some delays in delivery.",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const API_KEY = 'AIzaSyBMs-DsB6pg3VEwNZsNmNwgj2EmbnjNwCQ'; 
+const PLACE_ID = 'ChIJtZeocVenlR4Rk4syssqqFkY';
+
+async function fetchGoogleReviews() {
+    try {
+        const response = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&key=${API_KEY}`);
+        const data = await response.json();
+
+        if (data.status === 'OK') {
+            const reviews = data.result.reviews;
+            displayReviews(reviews);
+        } else {
+            console.error('Error fetching reviews:', data.status);
         }
-    ];
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
 
-    // Display mock reviews
-    const reviewsContainer = document.getElementById('google-reviews');
-    reviewsContainer.innerHTML = '';
+function displayReviews(reviews) {
+    const reviewContainer = document.getElementById('google-reviews');
+    reviewContainer.innerHTML = '';
 
-    mockReviews.forEach(review => {
-        const reviewElement = document.createElement('div');
-        reviewElement.classList.add('testimonial-item');
-        reviewElement.innerHTML = `
+    reviews.forEach(review => {
+        const reviewItem = document.createElement('div');
+        reviewItem.classList.add('testimonial-item');
+
+        reviewItem.innerHTML = `
             <div class="testimonial-content">
                 <h4>${review.author_name}</h4>
-                <div class="rating">${'⭐'.repeat(review.rating)}</div>
+                <div class="rating">
+                    ${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}
+                </div>
                 <p>${review.text}</p>
+                <small>${new Date(review.time * 1000).toLocaleDateString()}</small>
             </div>
         `;
-        reviewsContainer.appendChild(reviewElement);
+
+        reviewContainer.appendChild(reviewItem);
+    });
+
+    // Initialize the carousel
+    initializeCarousel();
+}
+
+function initializeCarousel() {
+    $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 2
+            },
+            1000: {
+                items: 3
+            }
+        }
     });
 }
 
 function openGoogleReview() {
-    // Replace with your place ID
-    const PLACE_ID = 'ChIJtZeocVenlR4Rk4syssqqFkY';
-    window.open(`https://search.google.com/local/writereview?placeid=${PLACE_ID}`, '_blank');
+    window.open('https://www.google.com/maps/place/?q=place_id:' + PLACE_ID + '&action=write-review', '_blank');
 }
 
-// Simulate API call when the page loads
+// Fetch the reviews when the page loads
 document.addEventListener('DOMContentLoaded', fetchGoogleReviews);
