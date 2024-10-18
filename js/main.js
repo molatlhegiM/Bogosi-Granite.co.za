@@ -153,52 +153,51 @@ function shuffleSlides() {
 
 
 
-const API_KEY = 'AIzaSyBMs-DsB6pg3VEwNZsNmNwgj2EmbnjNwCQ'; 
+const apiKey = 'AIzaSyBMs-DsB6pg3VEwNZsNmNwgj2EmbnjNwCQ'; // Example Place ID for BGT Granite and Tombstones Pty Ltd
 const PLACE_ID = 'ChIJtZeocVenlR4Rk4syssqqFkY';
-
-async function fetchGoogleReviews() {
+function openGoogleReview() {
+    // Now PLACE_ID can be used safely
+}
+const apiUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&key=${apiKey}`;
+    
     try {
-        const response = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&key=${API_KEY}`);
+        const response = await fetch(url);
         const data = await response.json();
 
-        if (data.status === 'OK') {
+        if (data.status === "OK" && data.result.reviews) {
             const reviews = data.result.reviews;
             displayReviews(reviews);
         } else {
-            console.error('Error fetching reviews:', data.status);
+            console.error("Error fetching reviews:", data.error_message);
         }
     } catch (error) {
-        console.error('Error:', error);
+        console.error("Error fetching reviews:", error);
     }
 }
 
 function displayReviews(reviews) {
-    const reviewContainer = document.getElementById('google-reviews');
-    reviewContainer.innerHTML = '';
+    const reviewsContainer = document.getElementById('google-reviews');
+    reviewsContainer.innerHTML = ''; // Clear any existing reviews
 
     reviews.forEach(review => {
-        const reviewItem = document.createElement('div');
-        reviewItem.classList.add('testimonial-item');
+        const reviewElement = document.createElement('div');
+        reviewElement.className = 'testimonial-item';
 
-        reviewItem.innerHTML = `
+        reviewElement.innerHTML = `
             <div class="testimonial-content">
-                <h4>${review.author_name}</h4>
-                <div class="rating">
-                    ${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}
+                <div class="img">
+                    <img src="${review.profile_photo_url || 'default-avatar.jpg'}" class="testimonial-img" alt="${review.author_name}">
                 </div>
+                <h4>${review.author_name}</h4>
+                <h5>${'⭐'.repeat(Math.round(review.rating))}</h5>
                 <p>${review.text}</p>
-                <small>${new Date(review.time * 1000).toLocaleDateString()}</small>
             </div>
         `;
 
-        reviewContainer.appendChild(reviewItem);
+        reviewsContainer.appendChild(reviewElement);
     });
 
-    // Initialize the carousel
-    initializeCarousel();
-}
-
-function initializeCarousel() {
+    // Initialize the Owl Carousel or your preferred slider library here
     $('.owl-carousel').owlCarousel({
         loop: true,
         margin: 10,
@@ -220,8 +219,9 @@ function initializeCarousel() {
 }
 
 function openGoogleReview() {
-    window.open('https://www.google.com/maps/place/?q=place_id:' + PLACE_ID + '&action=write-review', '_blank');
+    const reviewLink = `https://search.google.com/local/writereview?placeid=${PLACE_ID}`;
+    window.open(reviewLink, '_blank');
 }
 
-// Fetch the reviews when the page loads
+// Fetch reviews when the page loads
 document.addEventListener('DOMContentLoaded', fetchGoogleReviews);
