@@ -152,76 +152,56 @@ function shuffleSlides() {
 
 
 
-
-const apiKey = 'AIzaSyBMs-DsB6pg3VEwNZsNmNwgj2EmbnjNwCQ'; // Example Place ID for BGT Granite and Tombstones Pty Ltd
+// JavaScript: Handle Google Reviews Fetching
+const apiKey = 'AIzaSyBMs-DsB6pg3VEwNZsNmNwgj2EmbnjNwCQ';
 const PLACE_ID = 'ChIJtZeocVenlR4Rk4syssqqFkY';
+
+// Function to open the Google review form
 function openGoogleReview() {
-    // Now PLACE_ID can be used safely
+    const url = `https://search.google.com/local/writereview?placeid=${PLACE_ID}`;
+    window.open(url, '_blank');
 }
-const apiUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&key=${apiKey}`;
-    
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
 
-        if (data.status === "OK" && data.result.reviews) {
-            const reviews = data.result.reviews;
-            displayReviews(reviews);
+// Initialize the Google Places Service and Fetch Reviews
+function initialize() {
+    const service = new google.maps.places.PlacesService(document.createElement('div'));
+    const request = {
+        placeId: PLACE_ID,
+        fields: ['name', 'rating', 'reviews']
+    };
+
+    service.getDetails(request, (place, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            displayReviews(place.reviews);
         } else {
-            console.error("Error fetching reviews:", data.error_message);
+            console.error('Failed to load reviews:', status);
         }
-    } catch (error) {
-        console.error("Error fetching reviews:", error);
-    }
+    });
 }
 
+// Function to display the reviews on the webpage
 function displayReviews(reviews) {
     const reviewsContainer = document.getElementById('google-reviews');
     reviewsContainer.innerHTML = ''; // Clear any existing reviews
 
     reviews.forEach(review => {
         const reviewElement = document.createElement('div');
-        reviewElement.className = 'testimonial-item';
-
+        reviewElement.classList.add('testimonial-item');
         reviewElement.innerHTML = `
-            <div class="testimonial-content">
-                <div class="img">
-                    <img src="${review.profile_photo_url || 'default-avatar.jpg'}" class="testimonial-img" alt="${review.author_name}">
-                </div>
-                <h4>${review.author_name}</h4>
-                <h5>${'⭐'.repeat(Math.round(review.rating))}</h5>
-                <p>${review.text}</p>
-            </div>
+            <h4>${review.author_name}</h4>
+            <div class="rating">${'⭐'.repeat(Math.round(review.rating))}</div>
+            <p>${review.text}</p>
         `;
-
         reviewsContainer.appendChild(reviewElement);
     });
 
-    // Initialize the Owl Carousel or your preferred slider library here
-    $('.owl-carousel').owlCarousel({
+    // Reinitialize the carousel if you're using a library like Owl Carousel
+    $('#google-reviews').owlCarousel({
         loop: true,
         margin: 10,
         nav: true,
+        items: 1,
         autoplay: true,
-        autoplayTimeout: 5000,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 2
-            },
-            1000: {
-                items: 3
-            }
-        }
+        autoplayTimeout: 3000,
     });
 }
-
-function openGoogleReview() {
-    const reviewLink = `https://search.google.com/local/writereview?placeid=${PLACE_ID}`;
-    window.open(reviewLink, '_blank');
-}
-
-// Fetch reviews when the page loads
-document.addEventListener('DOMContentLoaded', fetchGoogleReviews);
